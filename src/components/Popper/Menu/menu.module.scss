@@ -1,0 +1,6 @@
+@use "../../../assets/styles/" as *;
+
+.wrapper {
+  @include flex($direction: column, $align: flex-start);
+  min-width: 200px;
+}

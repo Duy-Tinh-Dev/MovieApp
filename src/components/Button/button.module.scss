@@ -1,16 +1,12 @@
+@use "../../assets/styles/" as *;
 .wrapper {
+  @include flex-center;
+  @include font(1.8rem, 500);
+  @include colors($black-color, $white-color);
+  @include borders(0.0625rem, solid, $white-color, 0.125rem);
   padding: 6px 12px;
-  background-color: var(--white-color);
-  border-radius: 0.125rem;
-  border: 0.0625rem solid var(--white-color);
-  color: var(--black-color);
-  font-weight: 500;
-  font-size: 1.8rem;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: center;
+  user-select: none;
   & + .wrapper {
     margin-left: 10px;
   }
@@ -23,26 +19,23 @@
   }
 }
 .primary {
-  background: linear-gradient(90deg, #da9e1c 0, #ecbd57 100%);
   border: none;
+  background: linear-gradient(90deg, #da9e1c 0, #ecbd57 100%);
 }
 .text {
-  background-color: transparent;
-  color: var(--white-color);
+  @include colors($white-color, $transparent);
   padding: 0;
   border: none;
 }
 .outline {
-  background-color: transparent;
-  color: var(--white-color);
+  @include colors($white-color, $transparent);
 }
 .round {
   padding: 12px;
   border-radius: 50%;
 }
 .disable {
-  background-color: #ccc;
-  color: var(--text-color);
+  @include colors($text-color, #ccc);
   border: none;
   pointer-events: none;
 }
