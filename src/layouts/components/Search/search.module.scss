@@ -1,0 +1,107 @@
+.search-menu {
+  background-color: transparent;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  min-width: 400px;
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--white-color);
+    background-color: #1b1b1bff;
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background-color: inherit;
+      color: var(--white-color);
+      padding: 8px 12px;
+      font-size: 1.6rem;
+    }
+    .search-input::placeholder {
+      color: rgb(95, 95, 95);
+    }
+    .btn-search,
+    .btn-clear,
+    .loading {
+      background-color: transparent;
+      border: none;
+      color: var(--white-color);
+      font-size: 1.9rem;
+    }
+    .loading {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .search-result {
+    margin-top: 10px;
+    background-color: var(--black-color);
+    .search-heading {
+      padding: 12px 16px;
+      font-size: 1.6rem;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .search-body {
+      width: 400px;
+      padding: 0 16px;
+      max-height: 65vh;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: var(--scrollbar-bg-color);
+      }
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #333333;
+      }
+    }
+  }
+}
+.search-icon {
+  margin: 0 !important;
+  background-color: transparent;
+  color: var(--white-color);
+  border: none;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: calc(0% - 10px);
+    background-color: var(--transparent);
+    width: 100%;
+    right: calc(0% + 16px);
+    height: 20px;
+  }
+  .description {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 11px);
+    clear: both;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: var(--padding-popover);
+    font-size: var(--fz-popover);
+    box-shadow: 0 0 0.625rem rgb(0 0 0 / 50%);
+    background-color: #111111ff;
+  }
+  &:hover .description {
+    display: inline-block;
+  }
+}
+.hidden {
+  visibility: hidden;
+}
