@@ -20,6 +20,7 @@ import {
   faTelevision,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+
 const cx = classNames.bind(styles);
 function Header() {
   const [dataSlider, setDataSlider] = useState([]);

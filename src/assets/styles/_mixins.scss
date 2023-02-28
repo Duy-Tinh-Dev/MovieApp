@@ -1,0 +1,63 @@
+@use "./variable" as *;
+
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin font($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+@mixin colors($text-color, $bg-color) {
+  color: $text-color;
+  background-color: $bg-color;
+}
+@mixin border-none {
+  border: none;
+  border-radius: 0;
+}
+@mixin borders(
+  $border,
+  $type-border: solid,
+  $border-color,
+  $border-radius: 0px
+) {
+  border: $border $type-border $border-color;
+  border-radius: $border-radius;
+}
+@mixin flex(
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin pseudo(
+  $content: "",
+  $pos: absolute,
+  $width: 100%,
+  $height: 100%,
+  $display: inline-block
+) {
+  content: $content;
+  position: $pos;
+  display: $display;
+  @include box($width, $height);
+}

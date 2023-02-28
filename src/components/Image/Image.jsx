@@ -1,7 +1,7 @@
-import classNames from "classnames/bind";
 import { useState } from "react";
-import styles from "./image.module.scss";
 import images from "~/assets/images";
+import classNames from "classnames/bind";
+import styles from "./image.module.scss";
 const cx = classNames.bind(styles);
 function Image({
   classNames,
@@ -9,10 +9,10 @@ function Image({
   alt,
   fallback: customFallback = images.errorImage,
 }) {
+  const [fallback, setFallback] = useState("");
   const imageStyle = cx("wrapper", {
     [classNames]: classNames,
   });
-  const [fallback, setFallback] = useState("");
   const handleFallBack = () => {
     setFallback(customFallback);
   };
