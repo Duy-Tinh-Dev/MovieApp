@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
 import Button from "~/components/Button";
-import styles from "./index.module.scss";
+import styles from "./menuItem.module.scss";
 const cx = classNames.bind(styles);
+
 function MenuItem({ children, item, className, onClick, ...passProps }) {
   const menuItemClass = cx("wrapper", {
     [className]: className,

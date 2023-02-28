@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./button.module.scss";
 import classNames from "classnames/bind";
-const cx = classNames.bind(styles);
+import styles from "./button.module.scss";
 
+const cx = classNames.bind(styles);
 const Button = React.forwardRef(
   (
     {

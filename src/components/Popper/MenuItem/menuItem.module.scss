@@ -1,0 +1,10 @@
+@use "../../../assets/styles/" as *;
+
+.wrapper {
+  @include border-none;
+  @include colors($white-color, inherit);
+  font-size: 1.4rem;
+  & + .wrapper {
+    margin-left: 0;
+  }
+}
