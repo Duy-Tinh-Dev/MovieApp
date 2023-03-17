@@ -44,8 +44,6 @@ function Slider({ classNames, dataSlider }) {
       speed={1500}
       loop={true}
       effect={"fade"}
-      pagination
-      navigation
     >
       {slideItems}
     </swiper-container>

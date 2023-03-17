@@ -8,31 +8,33 @@ import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import Popover from "~/components/Popover";
 import Search from "../Search";
-import Tippy from "@tippyjs/react/headless";
 import Popper from "~/components/Popper";
 import Slider from "../Slider";
 import Image from "~/components/Image";
 import icon from "~/assets/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBars,
   faHome,
   faMoneyBillWave,
   faTelevision,
   faUser,
+  faClose,
 } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 function Header() {
   const [dataSlider, setDataSlider] = useState([]);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
   const location = useLocation();
-
   useEffect(() => {
     const getDataSlider = async () => {
       const params = {};
       let type = "all";
       let time = "day";
-      const response = await apiService.getTrending(type, time, params);
-      setDataSlider(response.results.slice(0, 6));
+      const { results } = await apiService.getTrending(type, time, params);
+      setDataSlider(results.slice(0, 6));
     };
     getDataSlider();
   }, []);
@@ -91,25 +93,54 @@ function Header() {
       icon: <FontAwesomeIcon icon={faTelevision} />,
     },
   ];
+
+  const toggleMenu = () => {
+    setIsOpenMenu((prev) => !prev);
+  };
   return (
     <div className={cx("wrapper")}>
       <header className={cx("top")}>
         <div className={cx("navigation")}>
+          <Button className={cx("btn-menu")} onClick={toggleMenu}>
+            <FontAwesomeIcon icon={faBars} />
+          </Button>
           <Link to="/" className={cx("logo")}>
             <Image src={images.logo} alt="logo"></Image>
           </Link>
-          <nav className={cx("navigation-list")}>
+          <nav
+            className={cx("navigation-list", {
+              active: isOpenMenu,
+            })}
+          >
+            {isOpenMenu && (
+              <>
+                <Button
+                  text
+                  className={cx("btn-close-menu")}
+                  onClick={toggleMenu}
+                >
+                  <FontAwesomeIcon icon={faClose} />
+                </Button>
+                <li className={cx("navigation-item", "wrap-login")}>
+                  <button className={cx("btn-user")}>
+                    <FontAwesomeIcon icon={faUser} />
+                    <span className={cx("name-item")}>Login</span>
+                  </button>
+                </li>
+              </>
+            )}
             {NavListOption.map((item) => (
-              <Link
+              <li
                 key={item.id}
-                to={item.path}
                 className={cx("navigation-item", {
                   active: item.path === location.pathname,
                 })}
               >
-                {item.icon}
-                <span className={cx("name")}>{item.name}</span>
-              </Link>
+                <Link to={item.path}>
+                  {item.icon}
+                  <span className={cx("name-item")}>{item.name}</span>
+                </Link>
+              </li>
             ))}
           </nav>
         </div>
@@ -123,25 +154,19 @@ function Header() {
             </Button>
           </Popover>
           <Search />
-          <Tippy
-            interactive
-            placement="bottom-end"
-            offset={[0, 11]}
-            render={() => {
-              return (
-                <Popper className={cx("wrap-btn-account")}>
-                  <Button outline className={cx("button")}>
-                    Log in
-                  </Button>
-                  <Button outline className={cx("button")}>
-                    Register
-                  </Button>
-                </Popper>
-              );
-            }}
-          >
-            <FontAwesomeIcon icon={faUser} className={cx("action-item")} />
-          </Tippy>
+          <div className={cx("btn-user", "action-item")}>
+            <Popper className={cx("popper")}>
+              <Button outline className={cx("btn")}>
+                Log in
+              </Button>
+              <Button outline className={cx("btn")}>
+                Register
+              </Button>
+            </Popper>
+            <span>
+              <FontAwesomeIcon icon={faUser} />
+            </span>
+          </div>
         </div>
       </header>
       <Slider dataSlider={dataSlider} />

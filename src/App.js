@@ -15,7 +15,7 @@ function App() {
   //   getPopularFilm();
   // }, []);
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "black" }}>
       <Router>
         <Routes>
           {publicRoutes.map((route) => {

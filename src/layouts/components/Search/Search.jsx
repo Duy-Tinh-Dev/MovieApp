@@ -62,7 +62,12 @@ const Search = React.forwardRef((props, ref) => {
     setElementSearch(false);
     setValueInput("");
   };
-
+  const onMount = (instance) => {
+    if (window.innerWidth <= 420) {
+      instance.popper.classList.add(cx("mobile-position"));
+    }
+  };
+  const tippyRef = useRef(null);
   return (
     <div>
       <Tippy
@@ -72,6 +77,19 @@ const Search = React.forwardRef((props, ref) => {
         interactive
         onClickOutside={handleCloseSearch}
         visible={elementSearch}
+        onMount={onMount}
+        onCreate={(instance) => (tippyRef.current = instance)}
+        popperOptions={{
+          modifiers: [
+            {
+              name: "computeStyles",
+              options: {
+                adaptive: false,
+                gpuAcceleration: false,
+              },
+            },
+          ],
+        }}
         render={() => {
           return (
             <Popper
@@ -124,7 +142,7 @@ const Search = React.forwardRef((props, ref) => {
         }}
       >
         <Button
-          className={cx("search-icon", {
+          className={cx("btn-search", {
             hidden: elementSearch,
           })}
           onClick={() => {

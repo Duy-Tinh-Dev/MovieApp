@@ -5,7 +5,6 @@
 }
 .image::before {
   @include pseudo();
-  top: 0;
   left: 0;
   background-color: black;
   opacity: 0.4;
@@ -15,7 +14,7 @@
   position: absolute;
   bottom: 8%;
   left: 5%;
-  color: var(--white-color);
+  color: $white-color;
   max-width: 600px;
   z-index: 10;
   .heading {
@@ -23,11 +22,37 @@
     font-family: "Shantell Sans", cursive;
     margin-bottom: 10px;
   }
+  .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
   .button-group {
     display: flex;
     margin-top: 20px;
     button {
       padding: 12px 30px;
     }
+  }
+}
+@include smallScreen {
+  .image::before {
+    top: $header-height-tablet-pc;
+    left: 0;
+    box-shadow: 0px -40px 25px 0px rgba(0, 0, 0, 1);
+    opacity: 1;
+  }
+  .content {
+    max-width: 700px;
+    .heading {
+      font-size: 3rem;
+    }
+  }
+}
+@include mobile {
+  .image::before {
+    top: $header-height-mobile-pc;
   }
 }

@@ -1,20 +1,18 @@
+@use "../../../assets/styles/" as *;
 .search-menu {
   background-color: transparent;
-  display: flex;
+  @include flex($direction: column);
   padding: 0;
-  flex-direction: column;
   min-width: 400px;
   .search-bar {
-    display: flex;
-    align-items: center;
-    border: 1px solid var(--white-color);
+    @include flex($align: center);
+    border: 1px solid $white-color;
     background-color: #1b1b1bff;
     .search-input {
       flex: 1;
       border: none;
       outline: none;
-      background-color: inherit;
-      color: var(--white-color);
+      @include colors($white-color, inherit);
       padding: 8px 12px;
       font-size: 1.6rem;
     }
@@ -24,9 +22,8 @@
     .btn-search,
     .btn-clear,
     .loading {
-      background-color: transparent;
+      @include colors($white-color, $transparent);
       border: none;
-      color: var(--white-color);
       font-size: 1.9rem;
     }
     .loading {
@@ -44,24 +41,23 @@
 
   .search-result {
     margin-top: 10px;
-    background-color: var(--black-color);
+    background-color: $black-color;
     .search-heading {
       padding: 12px 16px;
-      font-size: 1.6rem;
-      font-weight: 500;
-      border-bottom: 1px solid var(--border-color);
+      @include font(1.6rem, 500);
+      border-bottom: 1px solid $border-color;
     }
     .search-body {
       width: 400px;
-      padding: 0 16px;
       max-height: 65vh;
+      padding: 0 16px;
       overflow-y: scroll;
       &::-webkit-scrollbar {
         width: 8px;
       }
       /* Track */
       &::-webkit-scrollbar-track {
-        background: var(--scrollbar-bg-color);
+        background: $scrollbar-bg-color;
       }
       /* Handle */
       &::-webkit-scrollbar-thumb {
@@ -70,20 +66,20 @@
     }
   }
 }
-.search-icon {
-  margin: 0 !important;
-  background-color: transparent;
-  color: var(--white-color);
-  border: none;
+.btn-search {
+  font-size: 2rem;
   position: relative;
+  margin: 0 !important;
+  @include colors($white-color, $transparent);
+  border: none;
+  &:hover {
+    color: $gray-color;
+  }
   &::before {
-    content: "";
-    position: absolute;
+    @include pseudo($height: 20px);
     bottom: calc(0% - 10px);
-    background-color: var(--transparent);
-    width: 100%;
     right: calc(0% + 16px);
-    height: 20px;
+    background-color: $transparent;
   }
   .description {
     display: none;
@@ -93,9 +89,10 @@
     clear: both;
     overflow: hidden;
     white-space: nowrap;
-    padding: var(--padding-popover);
-    font-size: var(--fz-popover);
+    padding: $padding-popover;
+    font-size: $fz-popover;
     box-shadow: 0 0 0.625rem rgb(0 0 0 / 50%);
+    color: $white-color;
     background-color: #111111ff;
   }
   &:hover .description {
@@ -104,4 +101,24 @@
 }
 .hidden {
   visibility: hidden;
+}
+@include smallScreen {
+  .btn-search {
+    font-size: 1.7rem;
+    &:hover .description {
+      display: none !important;
+    }
+  }
+  .search-menu {
+    min-width: 100%;
+    .search-result {
+      .search-body {
+        max-height: 50vh;
+      }
+    }
+  }
+}
+.mobile-position {
+  left: 10px !important;
+  right: 10px !important;
 }
