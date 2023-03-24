@@ -1,7 +1,9 @@
+$mobile: 480px;
 $tablet: 768px;
 $large: 1024px;
 $desktop: 1280px;
-$header-height: 55px;
+$navigation-height: 55px;
+$with-menu: 290px;
 $padding-popover: 16px 30px;
 $fz-popover: 1.6rem;
 $primary-color: #ecbd57;
@@ -14,3 +16,6 @@ $scrollbar-thumb-bg-color: #33333380;
 $swiper-theme-color: #fff;
 $gray-color: #9b9b9bff;
 $transparent: transparent;
+$header-height-tablet-vh: 65vh;
+$header-height-tablet-pc: 65%;
+$header-height-mobile-pc: 50%;

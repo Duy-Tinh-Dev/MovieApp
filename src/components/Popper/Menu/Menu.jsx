@@ -23,7 +23,6 @@ function Menu({ children, menuList, className }) {
   const handleRollBack = () => {
     if (historyMenu.length > 1) setHistoryMenu((pre) => pre.slice(0, -1));
   };
-
   const handleRenderMenuItem = () => {
     return (
       <>

@@ -1,3 +1,4 @@
+import React from "react";
 import classNames from "classnames/bind";
 import styles from "./defaultLayout.module.scss";
 import { Header, Footer } from "../components";

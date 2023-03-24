@@ -1,3 +1,5 @@
+@use "../../assets/styles/" as *;
+
 .wrap-children {
-  margin-top: var(--header-height);
+  margin-top: $navigation-height;
 }

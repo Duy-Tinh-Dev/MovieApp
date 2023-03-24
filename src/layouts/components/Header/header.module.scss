@@ -5,7 +5,7 @@
 }
 .top {
   @include flex($justify: space-between, $align: center);
-  @include box(100%, $header-height);
+  @include box(100%, $navigation-height);
   position: fixed;
   top: 0;
   padding: 0 46px;
@@ -17,28 +17,34 @@
     .logo {
       display: flex;
       max-width: 150px;
+      margin-right: 44px;
+    }
+    .btn-menu {
+      display: none;
+      @include colors($white-color, $transparent);
+      border: none;
+      font-size: 2.2rem;
     }
     &-list {
-      display: grid;
-      grid-auto-flow: column;
-      gap: 0px 16px;
-      margin-left: 44px;
-      .name {
-        margin-left: 8px;
-      }
+      display: flex;
     }
     &-item {
       padding: 12px;
       position: relative;
+      color: $text-color;
+    }
+    .name-item {
+      margin-left: 8px;
     }
     &-item.active {
+      color: $white-color;
       &::before {
         @include pseudo($height: 4px);
         bottom: 0;
         left: 0;
         background-image: radial-gradient(
-          50% 75% at 50% 75%,
-          #35e890 0,
+          closest-side at 50% 45%,
+          #00ff84 0,
           rgba(56, 224, 141, 0) 100%
         );
         filter: blur(1px);
@@ -46,23 +52,141 @@
     }
   }
   .action {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
+    @include flex($align: center);
     gap: 0 18px;
+    z-index: -1;
     &-item:hover {
-      color: var(--gray-color);
+      color: $gray-color;
     }
   }
-  // button user (login register )
-  .wrap-btn-account {
-    padding: 12px;
-    .button {
-      width: 185px;
-      margin: 0;
+  .btn-user {
+    position: relative;
+    @include colors($text-color: $white-color, $bg-color: $transparent);
+    font-size: 2rem;
+    .popper {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 38px;
+      padding: 12px;
+      .btn {
+        width: 185px;
+        margin: 0;
+        font-size: $fz-popover;
+      }
+      .btn + .btn {
+        margin-top: 12px;
+      }
     }
-    .button + .button {
-      margin-top: 12px;
+    &::after {
+      @include pseudo($width: 30px, $height: 30px);
+      background-color: transparent;
+    }
+    &:hover .popper {
+      display: block;
+    }
+  }
+}
+@include smallScreen {
+  .wrapper {
+    height: $header-height-tablet-vh;
+  }
+  .top {
+    padding: 12px;
+    .navigation {
+      .btn-menu {
+        display: flex;
+      }
+      .btn-close-menu {
+        position: absolute;
+        font-size: 2.8rem;
+        top: 0;
+        right: 0;
+        padding: 5px 12px;
+        z-index: 100;
+      }
+      &-item {
+        padding: 12px 0;
+      }
+      &-list {
+        display: none;
+      }
+      &-list.active {
+        position: fixed;
+        @include flex($direction: column);
+        width: $with-menu;
+        padding-left: 12px;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: $black-color;
+        animation: slide-show ease-in-out 0.2s;
+      }
+      @keyframes slide-show {
+        0% {
+          transform: translateX(-200px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      &-list.active::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #000000b3;
+        z-index: -1;
+      }
+      .wrap-login {
+        margin: 60px 0 20px;
+        padding: 20px 0;
+        border-bottom: 1px solid $border-color;
+      }
+      &-item.active {
+        &::before {
+          @include pseudo($height: 50px, $width: 6px);
+          left: -12px;
+          top: 50%;
+          background: radial-gradient(
+            closest-side at 55% 54%,
+            #35e890 0,
+            rgba(56, 224, 141, 0) 100%
+          );
+          -webkit-transform: translate(0, -50%);
+          -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+        }
+      }
+    }
+    .action {
+      .btn-user {
+        display: none;
+      }
+    }
+    .btn-user {
+      font-size: 2rem;
+    }
+  }
+}
+@include tablet {
+  .top {
+    padding: 0;
+    font-size: 1.6rem;
+    .navigation {
+      .logo {
+        max-width: 100px;
+        margin: 0;
+      }
+      .btn-menu {
+        font-size: 2rem;
+        padding: 6px;
+      }
+    }
+    .action {
+      gap: 0 8px;
     }
   }
 }

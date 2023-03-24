@@ -1,19 +1,8 @@
+@use "../../assets/styles/" as *;
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:ital@1&display=swap");
-:root {
-  --white-color: white;
-  --black-color: black;
-  --text-color: #9b9b9b;
-  --border-color: #333333ff;
-  --header-height: 55px;
-  --scrollbar-bg-color: #111111;
-  --scrollbar-thumb-bg-color: #33333380;
-  --swiper-theme-color: #fff;
-  --padding-popover: 16px 30px;
-  --fz-popover: 1.6rem;
-  --gray-color: #9b9b9bff;
-}
 * {
   padding: 0;
   margin: 0;
@@ -37,12 +26,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--scrollbar-bg-color);
+  background: $scrollbar-bg-color;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-bg-color);
+  background: $scrollbar-thumb-bg-color;
   border-radius: 4px;
 }
 
@@ -71,4 +60,8 @@ button,
 svg {
   outline: none;
   cursor: pointer;
+  border: none;
+}
+li {
+  list-style: none;
 }

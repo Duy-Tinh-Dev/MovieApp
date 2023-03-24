@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./slider.module.scss";
 import { apiService } from "~/services";
 import Button from "~/components/Button";
+import Image from "~/components/Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faPlay } from "@fortawesome/free-solid-svg-icons";
 const cx = classNames.bind(styles);
@@ -16,7 +17,7 @@ function Slider({ classNames, dataSlider }) {
     return (
       <swiper-slide key={item.id}>
         <div className={cx("image")}>
-          <img src={image} alt={title} />
+          <Image src={image} alt={title} />
         </div>
         <div className={cx("content")}>
           <h3 className={cx("heading")}>{title}</h3>
@@ -44,8 +45,6 @@ function Slider({ classNames, dataSlider }) {
       speed={1500}
       loop={true}
       effect={"fade"}
-      pagination
-      navigation
     >
       {slideItems}
     </swiper-container>

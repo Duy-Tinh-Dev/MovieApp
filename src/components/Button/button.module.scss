@@ -2,8 +2,15 @@
 .wrapper {
   @include flex-center;
   @include font(1.8rem, 500);
+  @include smallScreen {
+    font-size: 1.4rem;
+  }
+  @include tablet {
+    font-size: 1.2rem;
+  }
   @include colors($black-color, $white-color);
   @include borders(0.0625rem, solid, $white-color, 0.125rem);
+  position: relative;
   padding: 6px 12px;
   text-align: center;
   user-select: none;
