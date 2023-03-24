@@ -17,12 +17,14 @@ function Image({
     setFallback(customFallback);
   };
   return (
-    <img
-      className={imageStyle}
-      src={fallback || src || images.notFoundImage}
-      alt={alt}
-      onError={handleFallBack}
-    />
+    <>
+      <img
+        className={imageStyle}
+        src={fallback || src || images.notFoundImage}
+        alt={alt}
+        onError={handleFallBack}
+      />
+    </>
   );
 }
 

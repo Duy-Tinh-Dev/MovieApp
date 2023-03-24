@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleChangeLoading } from "~/redux/slice/loadingSlice";
 import classNames from "classnames/bind";
 import styles from "./header.module.scss";
 import { apiService } from "~/services";
@@ -21,22 +23,34 @@ import {
   faUser,
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLoadingContext } from "react-router-loading";
 
 const cx = classNames.bind(styles);
 function Header() {
+  const dispatch = useDispatch();
   const [dataSlider, setDataSlider] = useState([]);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
   const location = useLocation();
+  const loadingContext = useLoadingContext();
   useEffect(() => {
-    const getDataSlider = async () => {
+    const loading = async () => {
       const params = {};
       let type = "all";
       let time = "day";
       const { results } = await apiService.getTrending(type, time, params);
       setDataSlider(results.slice(0, 6));
+      loadingContext.done();
     };
-    getDataSlider();
+
+    // const getDataSlider = async () => {
+    //   const params = {};
+    //   let type = "all";
+    //   let time = "day";
+    //   const { results } = await apiService.getTrending(type, time, params);
+    //   setDataSlider(results.slice(0, 6));
+    // };
+    // getDataSlider();
+    loading();
   }, []);
 
   const menuListOption = [
